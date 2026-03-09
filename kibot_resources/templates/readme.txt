@@ -1,30 +1,22 @@
-<p align="center" width="100%">
-  <img alt="Logo" width="33%" src="Logos/dummy_logo.svg">
-</p>
+![Logo](Logos/dummy_logo.png)
 
-<h1 align="center">${BOARD_NAME}</h1>
+# ${BOARD_NAME}
 
-<p align="center" width="100%">
-  <a href="${GIT_URL}/actions/workflows/ci.yaml">
-    <img alt="CI Badge" src="${GIT_URL}/actions/workflows/ci.yaml/badge.svg?branch=">
-  </a>
-</p>
+[![CI Badge](${GIT_URL}/actions/workflows/ci.yaml/badge.svg?branch=)](${GIT_URL}/actions/workflows/ci.yaml)
 
-<p align="center" width="100%">
-    <img src="Images/dummy_image.png">
-</p>
+![Main Render](Images/dummy_image.png)
 
 ***
 
-<p align="center">
-  <img alt="3D Top Angled" src="${png_3d_viewer_angled_top_outpath}" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="3D Bottom Angled" src="${png_3d_viewer_angled_bottom_outpath}" width="45%">
-</p>
+![3D Top Angled](${png_3d_viewer_angled_top_outpath}) 
+![3D Bottom Angled](${png_3d_viewer_angled_bottom_outpath})
 
 ***
 
 ## SPECIFICATIONS
+
+![KiCad Version](https://img.shields.io/badge/KiCad-9.0-brightgreen.svg)
+![Layers](https://img.shields.io/badge/Layers-4-informational.svg)
 
 | Parameter | Value | 
 | --- | --- |
@@ -35,7 +27,10 @@
 ## DIRECTORY STRUCTURE
 
     .
-    ├─ Computations       # Misc calculations
+    │
+    ├─ 3D                # PCB 3D Models 
+    │
+    ├─ Calculations       # Misc calculations
     ├─ HTML               # HTML files for generated webpage
     ├─ Images             # Pictures and renders
     │
@@ -61,6 +56,8 @@
     │  └─ Fabrication     # Fabrication documents (ZIP, notes)
     │     ├─ Drill Tables # CSV drill tables
     │     └─ Gerbers      # Gerbers
+    │
+    ├─ packages3D         # Component 3D models
     │
     ├─ Report             # Reports for ERC/DRC
     ├─ Schematic          # PDF of schematic

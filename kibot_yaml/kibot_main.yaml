@@ -560,7 +560,7 @@ definitions:
   PROJECT_NAME: Project Name
   BOARD_NAME: Board Name
 
-  COMPANY: Company Name
+  COMPANY: Maxwell + Spark
   DESIGNER: Author
 
   LOGO: 'Logos/dummy_logo.png'
@@ -568,12 +568,12 @@ definitions:
 
   # Preflight ==================================================================
 
-  CHECK_ZONE_FILLS: false
+  CHECK_ZONE_FILLS: true
   STACKUP_TABLE_NOTE: external layer thicknesses are specified after plating
 
   # BoM ========================================================================
 
-  MPN_FIELD: 'Manufacturer Part Number'
+  MPN_FIELD: 'MPN'
   MAN_FIELD: 'Manufacturer'
 
   # Drill table and drill map parameters =======================================

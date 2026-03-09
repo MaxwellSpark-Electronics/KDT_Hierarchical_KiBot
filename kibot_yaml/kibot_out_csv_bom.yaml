@@ -30,7 +30,7 @@ outputs:
       - "@MPN_FIELD@"
       - "Supplier Part Number"
       # - "arrow#"
-      # - "digikey#"
+      - "digikey#"
       # - "farnell#"
       # - "mouser#"
       # - "newark#"

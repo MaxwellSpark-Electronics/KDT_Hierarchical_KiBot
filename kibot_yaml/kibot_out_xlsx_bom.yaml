@@ -43,7 +43,7 @@ outputs:
       - "manf#"
       - "Supplier Part Number"
       # - "arrow#"
-      # - "digikey#"
+      - "digikey#"
       # - "farnell#"
       # - "mouser#"
       # - "newark#"
