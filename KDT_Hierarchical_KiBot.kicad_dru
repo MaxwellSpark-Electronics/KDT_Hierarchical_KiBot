@@ -1,20 +1,22 @@
 (version 1)
-#PCBWay Custom DRC for Kicad 8
+#JLCPCB Custom DRC for KiCad 9
 
-# 6 layers, 2 oz outer and 1 oz inner. Optimized for lowest cost.
+# 4 layers, 1 oz outer and 0.5 oz inner. Optimized for lowest cost.
+# Source: https://jlcpcb.com/capabilities/pcb-capabilities
 
 # ----------------------------------- Minimum trace width and spacing --------------------
 
-# 2oz copper
+# 1oz copper outer
 (rule "Minimum Trace Width and Spacing (outer layer)"
-(constraint track_width (min 0.2mm))
-(constraint clearance (min 0.2mm))
+(constraint track_width (min 0.09mm))
+(constraint clearance (min 0.09mm))
 (layer outer)
 (condition "A.Type == 'track'"))
 
-(rule "Minimum Trace Width and Spacing (innner layer)"
-(constraint track_width (min 0.2mm))
-(constraint clearance (min 0.2mm))
+# 0.5oz copper inner
+(rule "Minimum Trace Width and Spacing (inner layer)"
+(constraint track_width (min 0.09mm))
+(constraint clearance (min 0.09mm))
 (layer inner)
 (condition "A.Type == 'track'"))
 
@@ -27,15 +29,15 @@
 # ----------------------------------- Via hole/diameter size -------------------------------------------
 
 (rule "Minimum Via Diameter and Hole Size"
-(constraint hole_size (min 0.25mm))
-(constraint via_diameter (min 0.55mm))
+(constraint hole_size (min 0.15mm))
+(constraint via_diameter (min 0.25mm))
 (condition "A.Type == 'via'"))
 
 
 # ----------------------------------- Drill/hole size --------------------------------------------------
 
 (rule "PTH Hole Size"
-(constraint hole_size (min 0.25mm) (max 6.35mm))
+(constraint hole_size (min 0.15mm) (max 6.3mm))
 (condition "A.Type != 'Via' && A.isPlated()"))
 
 (rule "Minimum Non-plated Hole Size"
@@ -48,7 +50,7 @@
 (condition "A.Type == 'Pad' && A.isPlated()"))
 
 (rule "Minimum Castellated Hole Size"
-(constraint hole_size (min 0.6mm))
+(constraint hole_size (min 0.5mm))
 (condition "A.Type == 'pad' && A.Fabrication_Property == 'Castellated pad'"))
 
 (rule "Min. Plated Slot Width"
@@ -56,7 +58,7 @@
 (condition "(A.Hole_Size_X != A.Hole_Size_Y) && A.isPlated()"))
 
 (rule "Min. Non-Plated Slot Width"
-(constraint hole_size (min 0.8mm))
+(constraint hole_size (min 1.0mm))
 (condition "(A.Hole_Size_X != A.Hole_Size_Y) && !A.isPlated()"))
 
 
@@ -98,6 +100,23 @@
 (constraint clearance (min 0.2mm))
 (condition "A.isPlated() && A.Type != 'Via' && B.Type == 'track'"))
 
+# ----------------------------------- Inner layer clearances -------------------------------------------
+
+(rule "Inner layer via hole to copper clearance"
+(constraint hole_clearance (min 0.2mm))
+(layer inner)
+(condition "A.Type == 'via'"))
+
+(rule "Inner layer PTH pad hole to copper clearance"
+(constraint hole_clearance (min 0.3mm))
+(layer inner)
+(condition "A.Type == 'pad' && A.isPlated()"))
+
+# ----------------------------------- High Voltage Minimum clearance --------------------------------
+(rule "HV_to_Logic_Isolation"
+    (constraint clearance (min 5mm))
+    (condition "A.NetClass == 'High_Voltage' && B.NetClass == 'Default'"))
+
 # ----------------------------------- Board Outlines (PICK ONE) -------------------------------------
 #Default Routed Edge Clearance
 (rule "Trace to Outline"
@@ -107,7 +126,7 @@
 # ----------------------------------- Silkscreen ----------------------------------------------------
 (rule "Minimum Text"
 (constraint text_thickness (min 0.15mm))
-(constraint text_height (min 0.8mm))
+(constraint text_height (min 1.0mm))
 (layer "?.Silkscreen"))
 
 (rule "Pad to Silkscreen"

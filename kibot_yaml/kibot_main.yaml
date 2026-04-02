@@ -1,5 +1,5 @@
 # KiBot configuration file for KDT_Hierarchical Template
-# KiCad 8.0
+# KiCad 9.0
 
 kibot:
   version: 1
@@ -564,7 +564,7 @@ definitions:
   DESIGNER: Author
 
   LOGO: 'Logos/dummy_logo.png'
-  GIT_URL: 'https://github.com/nguyen-v/KDT_Hierarchical_KiBot'
+  GIT_URL: 'https://github.com/MaxwellSpark-Electronics/KDT_Hierarchical_KiBot'
 
   # Preflight ==================================================================
 
