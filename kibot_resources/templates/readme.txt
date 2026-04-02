@@ -16,7 +16,7 @@
 ## SPECIFICATIONS
 
 ![KiCad Version](https://img.shields.io/badge/KiCad-9.0-brightgreen.svg)
-![Layers](https://img.shields.io/badge/Layers-4-informational.svg)
+![Layers](https://img.shields.io/badge/Layers-2-informational.svg)
 
 | Parameter | Value | 
 | --- | --- |
