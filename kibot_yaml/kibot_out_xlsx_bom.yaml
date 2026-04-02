@@ -19,7 +19,8 @@ outputs:
     distributors:
         - Mouser
         - Digi-Key
-        - TME
+        - LCSC
+        # - TME
         # - Arrow
         # - Farnell
     xlsx:
@@ -41,14 +42,15 @@ outputs:
       - "Description"
       - "manf"
       - "manf#"
-      - "Supplier Part Number"
+      # - "Supplier Part Number"
       # - "arrow#"
       - "digikey#"
       # - "farnell#"
-      # - "mouser#"
+      - "mouser#"
       # - "newark#"
       # - "rs#"
       # - "tme#"
+      - "LCSC"
 ...
 definitions:
   NAME: xlsx_costs_bom

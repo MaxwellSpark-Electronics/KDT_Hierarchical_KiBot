@@ -28,14 +28,15 @@ outputs:
       - "Description"
       - "@MAN_FIELD@"
       - "@MPN_FIELD@"
-      - "Supplier Part Number"
+      # - "Supplier Part Number"
       # - "arrow#"
       - "digikey#"
       # - "farnell#"
-      # - "mouser#"
+      - "mouser#"
       # - "newark#"
       # - "rs#"
       # - "tme#"
+      - "LCSC"
 
 ...
 definitions:
