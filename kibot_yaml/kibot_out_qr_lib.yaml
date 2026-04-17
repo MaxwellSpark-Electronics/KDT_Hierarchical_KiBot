@@ -1,0 +1,41 @@
+# KiBot output for generating a QR code footprint library.
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/qr_lib.html
+#
+# After running this once, add the generated `.pretty` library to the project's
+# footprint libs and place the `@QR_NAME@` footprint on the silkscreen layer.
+# The `update_qr` preflight (in kibot_main.yaml) re-renders the QR geometry
+# from the text template on every run so the encoded revision stays in sync.
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: qr_lib
+  dir: '@DIR@'
+  options:
+    output: '@LIB_NAME@.%x'
+    lib: '@LIB_NAME@'
+    qrs:
+      - name: '@QR_NAME@'
+        text: '@QR_TEXT@'
+        correction_level: '@CORRECTION_LEVEL@'
+        size_units: millimeters
+        size_pcb: @SIZE_PCB@
+        size_sch: @SIZE_SCH@
+        pcb_negative: @PCB_NEGATIVE@
+        layer: silk
+
+...
+definitions:
+  NAME: qr_lib
+  COMMENT: QR code footprint library
+  DIR: qr_lib
+  LIB_NAME: ProjectQR
+  QR_NAME: QR_Revision
+  QR_TEXT: 'R${REVISION}'
+  CORRECTION_LEVEL: medium
+  SIZE_PCB: 6
+  SIZE_SCH: 15
+  PCB_NEGATIVE: false

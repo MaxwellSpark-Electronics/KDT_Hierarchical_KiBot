@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "ProjectQR")(type "KiCad")(uri "${KIPRJMOD}/qr_lib/ProjectQR.pretty")(options "")(descr ""))
+)
