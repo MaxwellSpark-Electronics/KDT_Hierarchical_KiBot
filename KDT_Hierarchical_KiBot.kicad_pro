@@ -494,7 +494,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.15,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -506,24 +506,24 @@
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
         "wire_width": 6
       },
       {
         "bus_width": 12,
         "clearance": 0.2,
-        "diff_pair_gap": 0.2032,
-        "diff_pair_width": 0.13,
+        "diff_pair_gap": 0.2,
+        "diff_pair_width": 0.15,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "CAN Bus",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 0,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.13,
-        "via_diameter": 0.6,
+        "pcb_color": "rgb(0, 194, 194)",
+        "priority": 6,
+        "schematic_color": "rgb(0, 194, 194)",
+        "track_width": 0.16,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
         "wire_width": 6
       },
@@ -531,16 +531,16 @@
         "bus_width": 12,
         "clearance": 0.2,
         "diff_pair_gap": 0.25,
-        "diff_pair_width": 0.2,
+        "diff_pair_width": 0.15,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Chassis",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
+        "pcb_color": "rgb(139, 103, 213)",
+        "priority": 7,
         "schematic_color": "rgb(139, 103, 213)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
         "wire_width": 24
       },
@@ -553,12 +553,63 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "GND",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "pcb_color": "rgb(0, 0, 0)",
+        "priority": 8,
         "schematic_color": "rgb(0, 0, 0)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
+        "wire_width": 24
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.8,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "HV <100V",
+        "pcb_color": "rgb(255, 153, 0)",
+        "priority": 1,
+        "schematic_color": "rgb(255, 153, 0)",
+        "track_width": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 24
+      },
+      {
+        "bus_width": 12,
+        "clearance": 2.0,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "HV <250V",
+        "pcb_color": "rgb(255, 0, 0)",
+        "priority": 2,
+        "schematic_color": "rgb(255, 0, 0)",
+        "track_width": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 24
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.4,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "HV <50V",
+        "pcb_color": "rgb(255, 200, 0)",
+        "priority": 3,
+        "schematic_color": "rgb(255, 200, 0)",
+        "track_width": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
         "wire_width": 24
       },
       {
@@ -570,12 +621,38 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "High Power",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 3,
+        "pcb_color": "rgb(177, 11, 198)",
+        "priority": 9,
         "schematic_color": "rgb(177, 11, 198)",
+        "track_width": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 24
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.2,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Isolated GND",
+        "pcb_color": "rgb(72, 72, 72)",
+        "priority": 5,
+        "schematic_color": "rgb(72, 72, 72)",
         "track_width": 0.2,
         "via_diameter": 0.7,
         "via_drill": 0.3,
+        "wire_width": 24
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "name": "Isolated Power 5V ",
+        "pcb_color": "rgb(132, 0, 0)",
+        "priority": 4,
+        "schematic_color": "rgb(132, 0, 0)",
         "wire_width": 24
       },
       {
@@ -588,10 +665,10 @@
         "microvia_drill": 0.1,
         "name": "Kelvin Diff Pair",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 4,
+        "priority": 10,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
         "wire_width": 6
       },
@@ -604,13 +681,13 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Power 12V",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 5,
-        "schematic_color": "rgb(255, 0, 171)",
+        "pcb_color": "rgb(220, 20, 20)",
+        "priority": 11,
+        "schematic_color": "rgb(220, 20, 20)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
-        "wire_width": 24
+        "wire_width": 12
       },
       {
         "bus_width": 12,
@@ -621,13 +698,13 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Power 3V3",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 6,
-        "schematic_color": "rgb(220, 142, 0)",
+        "pcb_color": "rgb(220, 180, 0)",
+        "priority": 12,
+        "schematic_color": "rgb(220, 180, 0)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
-        "wire_width": 24
+        "wire_width": 12
       },
       {
         "bus_width": 12,
@@ -638,13 +715,13 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Power 5V",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 7,
-        "schematic_color": "rgb(212, 0, 32)",
+        "pcb_color": "rgb(240, 140, 0)",
+        "priority": 13,
+        "schematic_color": "rgb(240, 140, 0)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
-        "wire_width": 24
+        "wire_width": 12
       },
       {
         "bus_width": 12,
@@ -655,28 +732,45 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "Power A3V3",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 8,
-        "schematic_color": "rgb(162, 155, 0)",
+        "pcb_color": "rgb(180, 160, 0)",
+        "priority": 14,
+        "schematic_color": "rgb(180, 160, 0)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
-        "wire_width": 24
+        "wire_width": 12
       },
       {
         "bus_width": 12,
         "clearance": 0.2,
-        "diff_pair_gap": 0.2032,
-        "diff_pair_width": 0.286,
+        "diff_pair_gap": 0.28,
+        "diff_pair_width": 0.2032,
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "RS422 Diff Pair",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 9,
+        "priority": 15,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2,
-        "via_diameter": 0.6,
+        "via_diameter": 0.7,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.15,
+        "diff_pair_width": 0.25,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "USB_90_R",
+        "pcb_color": "rgb(0, 255, 0)",
+        "priority": 0,
+        "schematic_color": "rgb(0, 255, 0)",
+        "track_width": 0.16,
+        "via_diameter": 0.7,
         "via_drill": 0.3,
         "wire_width": 6
       }
@@ -688,160 +782,96 @@
     "netclass_assignments": null,
     "netclass_patterns": [
       {
-        "netclass": "RS422 Diff Pair",
-        "pattern": "/Project Architecture/Interface - Interconnects/RS422_R+"
-      },
-      {
-        "netclass": "RS422 Diff Pair",
-        "pattern": "/Project Architecture/Interface - Interconnects/RS422_R-"
-      },
-      {
-        "netclass": "RS422 Diff Pair",
-        "pattern": "/Project Architecture/Interface - Interconnects/RS422_D-"
-      },
-      {
-        "netclass": "RS422 Diff Pair",
-        "pattern": "/Project Architecture/Interface - Interconnects/RS422_D+"
-      },
-      {
         "netclass": "Chassis",
         "pattern": "CHASSIS"
       },
       {
-        "netclass": "CAN Bus",
-        "pattern": "/Project Architecture/Interface - FD-CAN/FDCAN_P"
-      },
-      {
-        "netclass": "CAN Bus",
-        "pattern": "/Project Architecture/Interface - FD-CAN/FDCAN_N"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SA_P"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SA_N"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SB_P"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SB_N"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SC_P"
-      },
-      {
-        "netclass": "Kelvin Diff Pair",
-        "pattern": "/Project Architecture/Motor Control - Top Level/SC_N"
-      },
-      {
         "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/PHA"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/PHB"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/PHC"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/SRC_LS_C"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/SRC_LS_B"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Motor Control - Top Level/Motor Control - Inverter/SRC_LS_A"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "+VBAT"
+        "pattern": "+BATT"
       },
       {
         "netclass": "GND",
         "pattern": "GND"
       },
       {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/VIN_5V"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/VIN_12V"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/F_VBAT_12V"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/F_VBAT_5V"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/F_VIN_5V"
-      },
-      {
-        "netclass": "High Power",
-        "pattern": "/Project Architecture/Power - Generation/F_VIN_12V"
-      },
-      {
         "netclass": "Power 12V",
-        "pattern": "+12V"
-      },
-      {
-        "netclass": "Power 12V",
-        "pattern": "/Project Architecture/Power - Generation/SW_12V"
+        "pattern": "*+12V"
       },
       {
         "netclass": "Power 3V3",
-        "pattern": "+3V3"
-      },
-      {
-        "netclass": "Power 3V3",
-        "pattern": "/Project Architecture/Power - Generation/SW_3V3"
+        "pattern": "*+3V3"
       },
       {
         "netclass": "Power 5V",
-        "pattern": "+5V"
-      },
-      {
-        "netclass": "Power 5V",
-        "pattern": "/Project Architecture/Power - Generation/SW_5V"
+        "pattern": "*+5V"
       },
       {
         "netclass": "Power A3V3",
         "pattern": "+A3V3"
       },
       {
-        "netclass": "Power A3V3",
-        "pattern": "/Project Architecture/MCU - Power/F_A3V3"
+        "netclass": "Isolated GND",
+        "pattern": "*GND_ISO"
       },
       {
-        "netclass": "Power 3V3",
-        "pattern": "/Project Architecture/Sensing - Position/COMM_VDD"
+        "netclass": "Isolated Power 5V ",
+        "pattern": "*+5V_ISO"
       },
       {
-        "netclass": "Power 3V3",
-        "pattern": "/Project Architecture/Sensing - Position/DIS_VDD3V"
+        "netclass": "HV <100V",
+        "pattern": "*HV_*"
       },
       {
-        "netclass": "GND",
-        "pattern": "/Project Architecture/Interface - Fan Control/FAN_SW"
+        "netclass": "CAN Bus",
+        "pattern": "*CAN?_H*"
+      },
+      {
+        "netclass": "CAN Bus",
+        "pattern": "*CAN?_L*"
+      },
+      {
+        "netclass": "High Power",
+        "pattern": "*RAW*"
       },
       {
         "netclass": "Power 5V",
-        "pattern": "/Project Architecture/Power - Generation/F_VIN_3V3"
+        "pattern": "VBUS"
+      },
+      {
+        "netclass": "GND",
+        "pattern": "*FB_GND"
+      },
+      {
+        "netclass": "USB_90_R",
+        "pattern": "*USB_*"
+      },
+      {
+        "netclass": "High Power",
+        "pattern": "Vin"
+      },
+      {
+        "netclass": "Isolated GND",
+        "pattern": "*ISO_GND"
+      },
+      {
+        "netclass": "GND",
+        "pattern": "-BATT"
+      },
+      {
+        "netclass": "High Power",
+        "pattern": "*CONT_SOL*"
+      },
+      {
+        "netclass": "Power 12V",
+        "pattern": "*12V_*"
+      },
+      {
+        "netclass": "High Power",
+        "pattern": "+BATT_*"
+      },
+      {
+        "netclass": "GND",
+        "pattern": "-BATT_*"
       }
     ]
   },

@@ -1,40 +1,33 @@
 (version 1)
-#JLCPCB Custom DRC for KiCad 9
-
-# 4 layers, 1 oz outer and 0.5 oz inner. Optimized for lowest cost.
-# Source: https://jlcpcb.com/capabilities/pcb-capabilities
+# Maxwell + Spark PCB Design Rules - 2-layer, 1 oz copper
+#
+# Aligned with MSDR-GEN-POL-ENG-XXXX PCB Design Rules Policy.
+# Fab minimums from JLCPCB capabilities are retained where they are
+# tighter than the policy (hole sizes, slot widths, etc.).
 
 # ----------------------------------- Minimum trace width and spacing --------------------
 
-# 1oz copper outer
-(rule "Minimum Trace Width and Spacing (outer layer)"
-(constraint track_width (min 0.09mm))
-(constraint clearance (min 0.09mm))
+# Policy: signal/low-voltage minimum trace width 0.2 mm, clearance 0.15 mm.
+# DRC clearance set to 0.2 mm (policy 12 V domain minimum, safe default).
+(rule "Minimum Trace Width and Spacing"
+(constraint track_width (min 0.2mm))
+(constraint clearance (min 0.2mm))
 (layer outer)
 (condition "A.Type == 'track'"))
 
-# 0.5oz copper inner
-(rule "Minimum Trace Width and Spacing (inner layer)"
-(constraint track_width (min 0.09mm))
-(constraint clearance (min 0.09mm))
-(layer inner)
-(condition "A.Type == 'track'"))
-
-# ------------------------------------------------------------------------------------------------------
-
-# Drill/hole size - listed here to maintain order of rule application. Must not override rule set in Via hole/diameter size below.
-(rule "drill hole size (mechanical)"
-(constraint hole_size (min 0.15mm) (max 6.3mm)))
-
 # ----------------------------------- Via hole/diameter size -------------------------------------------
 
+# Policy: signal via 0.3 mm drill / 0.6 mm min pad (0.7 mm preferred).
 (rule "Minimum Via Diameter and Hole Size"
-(constraint hole_size (min 0.15mm))
-(constraint via_diameter (min 0.25mm))
+(constraint hole_size (min 0.3mm))
+(constraint via_diameter (min 0.6mm))
 (condition "A.Type == 'via'"))
 
-
 # ----------------------------------- Drill/hole size --------------------------------------------------
+
+# Fab minimum - catch-all for mechanical holes.
+(rule "drill hole size (mechanical)"
+(constraint hole_size (min 0.15mm) (max 6.3mm)))
 
 (rule "PTH Hole Size"
 (constraint hole_size (min 0.15mm) (max 6.3mm))
@@ -60,7 +53,6 @@
 (rule "Min. Non-Plated Slot Width"
 (constraint hole_size (min 1.0mm))
 (condition "(A.Hole_Size_X != A.Hole_Size_Y) && !A.isPlated()"))
-
 
 # ----------------------------------- Minimum clearance ------------------------------------------------
 
@@ -100,33 +92,63 @@
 (constraint clearance (min 0.2mm))
 (condition "A.isPlated() && A.Type != 'Via' && B.Type == 'track'"))
 
-# ----------------------------------- Inner layer clearances -------------------------------------------
+# ----------------------------------- Voltage domain clearances ----------------------------------------
 
-(rule "Inner layer via hole to copper clearance"
-(constraint hole_clearance (min 0.2mm))
-(layer inner)
-(condition "A.Type == 'via'"))
+# Policy voltage brackets: clearance values from MSDR-GEN-POL-ENG-XXXX
+# trace widths and clearances table (uncoated, outer layers).
 
-(rule "Inner layer PTH pad hole to copper clearance"
-(constraint hole_clearance (min 0.3mm))
-(layer inner)
-(condition "A.Type == 'pad' && A.isPlated()"))
+# HV <50V to non-HV nets: 0.4 mm clearance (policy: <50 V uncoated).
+(rule "HV <50V Clearance"
+(constraint clearance (min 0.4mm))
+(condition "A.NetClass == 'HV <50V' && B.NetClass != 'HV <50V' && B.NetClass != 'HV <100V' && B.NetClass != 'HV <250V'"))
 
-# ----------------------------------- High Voltage Minimum clearance --------------------------------
-(rule "HV_to_Logic_Isolation"
-    (constraint clearance (min 5mm))
-    (condition "A.NetClass == 'High_Voltage' && B.NetClass == 'Default'"))
+# HV <100V to non-HV nets: 0.8 mm clearance (policy: <100 V uncoated).
+(rule "HV <100V Clearance"
+(constraint clearance (min 0.8mm))
+(condition "A.NetClass == 'HV <100V' && B.NetClass != 'HV <100V' && B.NetClass != 'HV <250V'"))
 
-# ----------------------------------- Board Outlines (PICK ONE) -------------------------------------
-#Default Routed Edge Clearance
+# HV <250V to non-HV nets: 2.0 mm clearance (policy: <250 V uncoated).
+# Safety-rated sections may require more; see project-level documentation.
+(rule "HV <250V Clearance"
+(constraint clearance (min 2.0mm))
+(condition "A.NetClass == 'HV <250V' && B.NetClass != 'HV <250V'"))
+
+# Between different HV brackets: use the higher bracket's clearance.
+(rule "HV <100V to HV <50V Clearance"
+(constraint clearance (min 0.8mm))
+(condition "A.NetClass == 'HV <100V' && B.NetClass == 'HV <50V'"))
+
+(rule "HV <250V to HV <100V Clearance"
+(constraint clearance (min 2.0mm))
+(condition "A.NetClass == 'HV <250V' && B.NetClass == 'HV <100V'"))
+
+(rule "HV <250V to HV <50V Clearance"
+(constraint clearance (min 2.0mm))
+(condition "A.NetClass == 'HV <250V' && B.NetClass == 'HV <50V'"))
+
+# Policy: 12 V domain minimum clearance 0.2 mm uncoated.
+(rule "12V Domain Clearance"
+(constraint clearance (min 0.2mm))
+(condition "(A.NetClass == 'Power 12V' || B.NetClass == 'Power 12V') && A.NetClass != B.NetClass"))
+
+# Policy: isolated nets to non-isolated - maintain isolation gap.
+(rule "Isolated to Non-Isolated Clearance"
+(constraint clearance (min 0.3mm))
+(condition "(A.NetClass == 'Isolated GND' || A.NetClass == 'Isolated Power 5V') && B.NetClass != 'Isolated GND' && B.NetClass != 'Isolated Power 5V'"))
+
+# ----------------------------------- Board Outlines ---------------------------------------------------
+
+# Policy: 0.5 mm trace-to-edge clearance for routed edges.
 (rule "Trace to Outline"
-(constraint edge_clearance (min 0.3mm))
+(constraint edge_clearance (min 0.5mm))
 (condition "A.Type == 'track'"))
 
-# ----------------------------------- Silkscreen ----------------------------------------------------
+# ----------------------------------- Silkscreen -------------------------------------------------------
+
+# Policy: minimum text height 0.8 mm, minimum line width 0.15 mm.
 (rule "Minimum Text"
 (constraint text_thickness (min 0.15mm))
-(constraint text_height (min 1.0mm))
+(constraint text_height (min 0.8mm))
 (layer "?.Silkscreen"))
 
 (rule "Pad to Silkscreen"
@@ -134,12 +156,14 @@
 (layer outer)
 (condition "A.Type == 'pad' && (B.Type == 'text' || B.Type == 'graphic')"))
 
-# ----------------------------------- Test Points Courtyard -----------------------------------------
+# ----------------------------------- Test Points Courtyard --------------------------------------------
+
 (rule "Test Point Courtyard Exclusion"
 (constraint courtyard_clearance (min -1mm))
 (condition "A.Reference =='TP*'"))
 
-# ----------------------------------- Fiducials Courtyard -------------------------------------------
-(rule "Test Point Courtyard Exclusion"
+# ----------------------------------- Fiducials Courtyard ----------------------------------------------
+
+(rule "Fiducial Courtyard Exclusion"
 (constraint courtyard_clearance (min -1mm))
 (condition "A.Reference =='FM*'"))
