@@ -1,8 +1,13 @@
 # KiBot configuration file for KDT_Hierarchical Template
-# KiCad 9.0
+# KiCad 8.0
 
 kibot:
   version: 1
+
+preflight:
+  # Refresh QR code footprint geometry from its text template before plotting.
+  # Lets the placed QR code encode dynamic values like ${REVISION}.
+  update_qr: true
 
 variants:
 
@@ -115,6 +120,10 @@ groups:
   - name: ccoat
     outputs:
       - @PDF_CCOAT_OUTPUT@
+
+  - name: qr
+    outputs:
+      - @QR_LIB_OUTPUT@
 
   - name: 3d_render
     outputs:
@@ -512,6 +521,20 @@ import:
       LAYER_DNP_CROSS_BOTTOM: @LAYER_DNP_CROSS_BOTTOM@
       NAME_COMP_COUNT: @CSV_COMP_COUNT_OUPUT@
 
+  # QR code footprint library ------------------------------------------------
+  - file: kibot_out_qr_lib.yaml
+    definitions:
+      NAME: @QR_LIB_OUTPUT@
+      COMMENT: QR code footprint library
+      DIR: @QR_LIB_DIR@
+      LIB_NAME: @QR_LIB_NAME@
+      QR_NAME: @QR_NAME@
+      QR_TEXT: '@QR_TEXT@'
+      CORRECTION_LEVEL: @QR_CORRECTION_LEVEL@
+      SIZE_PCB: @QR_SIZE_PCB@
+      SIZE_SCH: @QR_SIZE_SCH@
+      PCB_NEGATIVE: @QR_PCB_NEGATIVE@
+
   # Conformal Coating Document in PDF format
   - file: kibot_out_pdf_ccoat.yaml
     definitions:
@@ -575,14 +598,14 @@ definitions:
 
   # Metadata ===================================================================
 
-  PROJECT_NAME: Project Name
-  BOARD_NAME: Board Name
+  PROJECT_NAME: Advantage.li CCPCB
+  BOARD_NAME: CCPCB - Contactor Control for Gen2.x
 
   COMPANY: Maxwell + Spark
-  DESIGNER: Author
+  DESIGNER: Ben Mawbey
 
-  LOGO: 'Logos/dummy_logo.png'
-  GIT_URL: 'https://github.com/MaxwellSpark-Electronics/KDT_Hierarchical_KiBot'
+  LOGO: 'Logos/ccpcb_logo.png'
+  GIT_URL: 'https://dev.azure.com/MaxwellAndSpark/Advantage/_git/CCPCB-HW'
 
   # Preflight ==================================================================
 
@@ -707,6 +730,18 @@ definitions:
   PDF_FABRICATION_OUTPUT: pdf_fabrication
   PDF_ASSEMBLY_OUTPUT: pdf_assembly
   PDF_CCOAT_OUTPUT: pdf_ccoat
+
+  # QR code library parameters =================================================
+
+  QR_LIB_OUTPUT: qr_lib
+  QR_LIB_DIR: qr_lib
+  QR_LIB_NAME: ProjectQR
+  QR_NAME: QR_Revision
+  QR_TEXT: 'R${REVISION}'
+  QR_CORRECTION_LEVEL: medium  # low=7% / medium=15% / quartile=25% / high=30%
+  QR_SIZE_PCB: 6      # mm
+  QR_SIZE_SCH: 15     # mm (for schematic symbol copy)
+  QR_PCB_NEGATIVE: false  # set true if your silkscreen is drawn as background
 
   ZIP_COMPRESS_FAB_OUTPUT: zip_compress_fab
 
