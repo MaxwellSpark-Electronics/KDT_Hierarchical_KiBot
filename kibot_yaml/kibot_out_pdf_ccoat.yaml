@@ -1,0 +1,83 @@
+# KiBot output for generating Conformal Coating Document in PDF format
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/pcb_print.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: pcb_print
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    colored_vias: false
+    colored_pads: false
+    color_theme: '@COLOR_THEME@'
+    output: '%f-ccoat%I%v.%x'
+    format: 'PDF'
+    title: '@DOC_TITLE@ Document'
+    realistic_solder_mask: false
+    dpi: 1200
+    dnf_filter: _kibom_dnf_Config
+    sheet_reference_layout: '@SHEET_WKS@'
+    pages:
+      - scaling: @SCALING@
+        layer_var: 'Top Conformal Coating (Scale @SCALING@:1)'
+        title: '@DOC_TITLE@'
+        sheet: 'Top Conformal Coating (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: '#FFFFFF'
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: F.Cu
+            color: '#E5E5E5'
+          - layer: F.Mask
+            color: '#CECECE'
+          - layer: F.Silkscreen
+            color: '#C7C7C7'
+          - layer: F.Fab
+            plot_footprint_refs: false
+            plot_footprint_values: false
+            color: '#A0A0A0'
+          - layer: '@LAYER_CCOAT_TOP@'
+            color: '#1F8A1F'
+
+      - scaling: @SCALING@
+        layer_var: 'Bottom Conformal Coating (Scale @SCALING@:1)'
+        mirror: true
+        mirror_pcb_text: false
+        title: '@DOC_TITLE@'
+        sheet: 'Bottom Conformal Coating (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: '#FFFFFF'
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: B.Cu
+            color: '#E5E5E5'
+          - layer: B.Mask
+            color: '#CECECE'
+          - layer: B.Silkscreen
+            color: '#C7C7C7'
+          - layer: B.Fab
+            plot_footprint_refs: false
+            plot_footprint_values: false
+            color: '#A0A0A0'
+          - layer: '@LAYER_CCOAT_BOTTOM@'
+            color: '#1F8A1F'
+
+...
+definitions:
+  NAME: pdf_ccoat
+  COMMENT: Conformal coating document in PDF format
+  DIR: Manufacturing/Assembly
+  DOC_TITLE: Conformal Coating
+  COLOR_THEME: Altium_Theme
+  SHEET_WKS: ${KIPRJMOD}/Templates/KDT_Template_PCB_GIT_A4.kicad_wks
+  SCALING: 1.0
+  LAYER_CCOAT_TOP: F.CCoat
+  LAYER_CCOAT_BOTTOM: B.CCoat

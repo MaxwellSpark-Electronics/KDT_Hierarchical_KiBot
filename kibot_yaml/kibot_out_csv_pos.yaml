@@ -1,10 +1,14 @@
 # KiBot output for generating Position file in CSV format
 # https://kibot.readthedocs.io/en/latest/configuration/outputs/position.html
 #
-# Uses the built-in `_rot_footprint_jlcpcb` filter to apply JLCPCB-specific
-# rotation and pin-1 offset corrections (polarised caps, SOIC, SOT-23, Molex
-# connectors, etc.) and emits JLC-compatible column headers so the file can be
-# uploaded directly to JLCPCB's SMT assembly service.
+# Emits JLCPCB-compatible column headers and uses the aux axis as origin so the
+# file can be uploaded directly to JLCPCB's SMT assembly service.
+#
+# No rotation pre-transform is applied: the built-in `_rot_footprint_jlcpcb`
+# filter reflects JLC's legacy library convention and now over-rotates many
+# parts (caps, diodes, SOT-23, etc.) because JLC has since updated their
+# library. Any residual orientation mismatches should be corrected in JLC's
+# web preview and saved against the LCSC part.
 
 kibot:
   version: 1
@@ -18,11 +22,11 @@ outputs:
   options:
     format: 'CSV'
     units: millimeters
+    use_aux_axis_as_origin: true
     only_smd: false
     include_virtual: false
     output: '%f-CPL%I%v.%x'
     separate_files_for_front_and_back: false
-    pre_transform: _rot_footprint_jlcpcb
     columns:
       - id: Ref
         name: Designator

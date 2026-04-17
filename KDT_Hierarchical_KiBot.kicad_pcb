@@ -42,6 +42,8 @@
 		(51 "User.7" user "B.Dimensions")
 		(53 "User.8" user "F.TestPointList")
 		(55 "User.9" user "B.TestPointList")
+		(57 "User.10" user "F.CCoat")
+		(59 "User.11" user "B.CCoat")
 	)
 	(setup
 		(stackup
