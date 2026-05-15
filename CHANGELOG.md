@@ -8,12 +8,12 @@
 
 ### Added
 
--   Additions
+-   Conformal coating overlay PDF output (`pdf_ccoat_overlay`) — renders a 3D image of the board with the CCoat layer drawn on top in green
 
 ### Changed
 
--   Changes
+-   Added `KiRI/` to `.gitignore` so the KiRI cache directory is no longer tracked in new projects
 
 ### Removed
 
--   Deletions
+-   `Power - Sequencing.kicad_sch` sheet

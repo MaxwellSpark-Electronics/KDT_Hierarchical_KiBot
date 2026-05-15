@@ -1,0 +1,76 @@
+# KiBot output for the CCoat overlay PDF: 3D PCB render at PCB origin/scale
+# with the CCoat layer drawn on top in green. The 3D image is inserted by
+# KiBot into the `kibot_image_png_3d_viewer_overlay_<view>` group placeholder
+# rects on the PCB:
+#   - Top placeholder on User.10 (F.CCoat) at the PCB outline bbox
+#   - Bottom placeholder on Cmts.User at the X-mirrored PCB outline bbox.
+#     Mirror is around page X center (paper width / 2). Image insertion is
+#     NOT affected by `mirror: true`, but the layer plot IS, so the bottom
+#     rect must be pre-mirrored to match where B.CCoat lands. The Cmts.User
+#     layer is used so the rect outline itself is not plotted.
+# If the paper size changes (currently A4 = 297 mm wide), the bottom rect
+# coords must be recomputed: rect_X = paper_width - PCB_X.
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/pcb_print.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: pcb_print
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    colored_vias: false
+    colored_pads: false
+    color_theme: '@COLOR_THEME@'
+    output: '%f-ccoat-overlay%I%v.%x'
+    format: 'PDF'
+    title: '@DOC_TITLE@ Document'
+    realistic_solder_mask: false
+    dpi: 1200
+    dnf_filter: _kibom_dnf_Config
+    sheet_reference_layout: '@SHEET_WKS@'
+    pages:
+      - scaling: @SCALING@
+        layer_var: 'Top CCoat Overlay (Scale @SCALING@:1)'
+        title: '@DOC_TITLE@'
+        sheet: 'Top CCoat Overlay (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: '@LAYER_CCOAT_TOP@'
+            color: '#1F8A1F'
+
+      - scaling: @SCALING@
+        layer_var: 'Bottom CCoat Overlay (Scale @SCALING@:1)'
+        mirror: true
+        mirror_pcb_text: false
+        title: '@DOC_TITLE@'
+        sheet: 'Bottom CCoat Overlay (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: '@LAYER_CCOAT_BOTTOM@'
+            color: '#1F8A1F'
+          # Cmts.User is plotted in white so KiBot finds the bottom
+          # `kibot_image_png_3d_viewer_overlay_bottom` group (its rect lives
+          # on Cmts.User at pre-mirrored coords). The rect outline renders
+          # invisibly against the white background.
+          - layer: Cmts.User
+            color: '#FFFFFF'
+
+...
+definitions:
+  NAME: pdf_ccoat_overlay
+  COMMENT: Conformal coating overlay (CCoat over 3D render) in PDF format
+  DIR: Manufacturing/Assembly
+  DOC_TITLE: Conformal Coating Overlay
+  COLOR_THEME: Altium_Theme
+  SHEET_WKS: ${KIPRJMOD}/Templates/KDT_Template_PCB_GIT_A4.kicad_wks
+  SCALING: 1.0
+  LAYER_CCOAT_TOP: F.CCoat
+  LAYER_CCOAT_BOTTOM: B.CCoat

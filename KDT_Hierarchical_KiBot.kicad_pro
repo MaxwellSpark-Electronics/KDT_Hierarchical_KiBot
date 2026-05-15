@@ -971,6 +971,36 @@
           "label": "Config",
           "name": "Config",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "qr_version",
+          "name": "qr_version",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "qr_ecc",
+          "name": "qr_ecc",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "qr_mask",
+          "name": "qr_mask",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "qr_size",
+          "name": "qr_size",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "qr_text",
+          "name": "qr_text",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -1042,10 +1072,6 @@
       "Section B - Title B"
     ],
     [
-      "5fb05893-0da3-4f58-a52b-cb6d6f4cb80b",
-      "Power - Sequencing"
-    ],
-    [
       "6e125bd6-2f99-4e5d-b3ea-4899f4540739",
       "Revision History"
     ]
@@ -1109,8 +1135,8 @@
     "SHEET_NAME_4": "Section A - Title A",
     "SHEET_NAME_40": "......................................",
     "SHEET_NAME_5": "Section B -Title B",
-    "SHEET_NAME_6": "Power - Sequencing",
-    "SHEET_NAME_7": "Revision History",
+    "SHEET_NAME_6": "Revision History",
+    "SHEET_NAME_7": "......................................",
     "SHEET_NAME_8": "......................................",
     "SHEET_NAME_9": "......................................",
     "VARIANT": ""
