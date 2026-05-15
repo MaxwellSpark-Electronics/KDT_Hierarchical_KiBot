@@ -4298,6 +4298,28 @@
 		(uuid "6d718cde-f3d5-4888-b231-52014ce71b38")
 	)
 	(gr_rect
+		(start 100.02132 58.1)
+		(end 220.02132 133.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "User.10")
+		(uuid "fa7e51c4-ba60-4d2a-b2ed-0a55c5b06bfd")
+	)
+	(gr_rect
+		(start 76.97868 58.1)
+		(end 196.97868 133.1)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "Cmts.User")
+		(uuid "12f16553-62bc-4b2d-9672-668e7ce84141")
+	)
+	(gr_rect
 		(start 26.5 60.5)
 		(end 63.187387 74.605016)
 		(stroke
@@ -17903,6 +17925,14 @@
 	(group "kibot_image_png_3d_viewer_top"
 		(uuid "877de656-5906-4f36-867e-2227d093f610")
 		(members "6d718cde-f3d5-4888-b231-52014ce71b38")
+	)
+	(group "kibot_image_png_3d_viewer_overlay_top"
+		(uuid "9cc779c5-6540-448f-8330-7790a9f93e1f")
+		(members "fa7e51c4-ba60-4d2a-b2ed-0a55c5b06bfd")
+	)
+	(group "kibot_image_png_3d_viewer_overlay_bottom"
+		(uuid "5f905372-9d3b-4b05-b982-446b590c44b6")
+		(members "12f16553-62bc-4b2d-9672-668e7ce84141")
 	)
 	(group "kibot_table_csv_comp_count"
 		(uuid "92aa9f57-3997-4fc2-a1c2-52856ba21a16")

@@ -120,6 +120,9 @@ groups:
   - name: ccoat
     outputs:
       - @PDF_CCOAT_OUTPUT@
+      - @PNG_3D_VIEWER_OVERLAY_TOP@
+      - @PNG_3D_VIEWER_OVERLAY_BOTTOM@
+      - @PDF_CCOAT_OVERLAY_OUTPUT@
 
   - name: qr
     outputs:
@@ -462,6 +465,26 @@ import:
       ZOOM: @3D_VIEWER_ZOOM@
       KEY_COLOR: '@KEY_COLOR@'
 
+  # 3D renders used as image source for the CCoat overlay PDF (kibot_image_*
+  # group placeholders on the PCB at the board outline are filled with these).
+  - file: kibot_out_png_3d_viewer.yaml
+    definitions:
+      NAME: @PNG_3D_VIEWER_OVERLAY_TOP@
+      COMMENT: Top 3D viewer render for CCoat overlay PDF
+      DIR: @IMAGES_DIR@
+      SUFFIX: overlay_top
+      VIEW: top
+      KEY_COLOR: '@KEY_COLOR@'
+
+  - file: kibot_out_png_3d_viewer.yaml
+    definitions:
+      NAME: @PNG_3D_VIEWER_OVERLAY_BOTTOM@
+      COMMENT: Bottom 3D viewer render for CCoat overlay PDF
+      DIR: @IMAGES_DIR@
+      SUFFIX: overlay_bottom
+      VIEW: bottom
+      KEY_COLOR: '@KEY_COLOR@'
+
   # STEP file ------------------------------------------------------------------
   - file: kibot_out_step.yaml
     definitions:
@@ -540,6 +563,19 @@ import:
     definitions:
       NAME: @PDF_CCOAT_OUTPUT@
       COMMENT: Conformal coating document in PDF format
+      DIR: @ASSEMBLY_DIR@
+      COLOR_THEME: @COLOR_THEME@
+      SHEET_WKS: @SHEET_WKS@
+      SCALING: @ASSEMBLY_SCALING@
+      LAYER_CCOAT_TOP: @LAYER_CCOAT_TOP@
+      LAYER_CCOAT_BOTTOM: @LAYER_CCOAT_BOTTOM@
+
+  # Conformal Coating Overlay PDF: 3D render of the board with the CCoat
+  # layer drawn on top in green. Both pages (top + bottom) defined inside.
+  - file: kibot_out_pdf_ccoat_overlay.yaml
+    definitions:
+      NAME: @PDF_CCOAT_OVERLAY_OUTPUT@
+      COMMENT: Conformal coating overlay (CCoat over 3D render) in PDF format
       DIR: @ASSEMBLY_DIR@
       COLOR_THEME: @COLOR_THEME@
       SHEET_WKS: @SHEET_WKS@
@@ -722,6 +758,8 @@ definitions:
   PNG_3D_VIEWER_BOTTOM: png_3d_viewer_bottom
   PNG_3D_VIEWER_ANGLED_TOP: png_3d_viewer_angled_top
   PNG_3D_VIEWER_ANGLED_BOTTOM: png_3d_viewer_angled_bottom
+  PNG_3D_VIEWER_OVERLAY_TOP: png_3d_viewer_overlay_top
+  PNG_3D_VIEWER_OVERLAY_BOTTOM: png_3d_viewer_overlay_bottom
 
   STEP_OUTPUT: step
   BLENDER_OUTPUT: blender
@@ -730,6 +768,7 @@ definitions:
   PDF_FABRICATION_OUTPUT: pdf_fabrication
   PDF_ASSEMBLY_OUTPUT: pdf_assembly
   PDF_CCOAT_OUTPUT: pdf_ccoat
+  PDF_CCOAT_OVERLAY_OUTPUT: pdf_ccoat_overlay
 
   # QR code library parameters =================================================
 
